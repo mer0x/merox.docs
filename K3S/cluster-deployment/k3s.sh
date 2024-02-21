@@ -126,7 +126,7 @@ echo -e " \033[32;5mFirst Node bootstrapped successfully!\033[0m"
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
 
 # Step 3: Download kube-vip
-curl -sO https://raw.githubusercontent.com/mer0x/meroxlaboratory/master/K3S/cluster-deployment/kube-vip?token=GHSAT0AAAAAACNGPXUKTGFX2RP62HSZLKLGZOJ35JA
+curl -sO https://raw.githubusercontent.com/mer0x/merox.cloud/k3s/K3S/cluster-deployment/kube-vip
 cat kube-vip | sed 's/$interface/'$interface'/g; s/$vip/'$vip'/g' > $HOME/kube-vip.yaml
 
 # Step 4: Copy kube-vip.yaml to master1
@@ -174,7 +174,7 @@ kubectl apply -f https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provi
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml
 # Download ipAddressPool and configure using lbrange above
-curl -sO https://raw.githubusercontent.com/mer0x/meroxlaboratory/master/K3S/cluster-deployment/ipAddressPool?token=GHSAT0AAAAAACNGPXUKJLONDABW7ZED6QZYZOJ4BCA
+curl -sO https://raw.githubusercontent.com/mer0x/merox.cloud/k3s/K3S/cluster-deployment/ipAddressPool
 cat ipAddressPool | sed 's/$lbrange/'$lbrange'/g' > $HOME/ipAddressPool.yaml
 
 # Step 9: Test with Nginx
@@ -236,7 +236,7 @@ done
 
 
 # Step 12: Install Longhorn (using modified Official to pin to Longhorn Nodes)
-kubectl apply -f https://raw.githubusercontent.com/mer0x/meroxlaboratory/master/K3S/cluster-deployment/longhorn.yaml?token=GHSAT0AAAAAACNGPXULMXWETVK5RXNUNEFUZOJ4EEA
+kubectl apply -f https://raw.githubusercontent.com/mer0x/merox.cloud/k3s/K3S/cluster-deployment/longhorn.yaml
 kubectl get pods \
 --namespace longhorn-system \
 --watch
