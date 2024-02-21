@@ -44,6 +44,14 @@ grafana:
   defaultDashboardsTimezone: utc
   serviceMonitor:
     enabled: true
+ additionalDataSources:
+  - access: proxy
+    isDefault: true
+    name: loki
+    orgId: 1
+    type: loki
+    url: http://loki:3100
+    version: 1
   admin:
     existingSecret: grafana-admin-credentials
     userKey: admin-user
