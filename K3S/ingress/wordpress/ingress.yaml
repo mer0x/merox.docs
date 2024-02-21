@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wordpress-robertmelcher
+  namespace: external-websites
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.robertmelcher.ro`) || Host(`robertmelcher.ro`)
+      kind: Rule
+      services:
+        - name: wordpress
+          port: 80
+  tls:
+    secretName: X-tls # Acest secret trebuie să fie creat de Cert-Manager

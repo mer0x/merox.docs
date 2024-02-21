@@ -1,0 +1,26 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wikijs
+  namespace: wikijs
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.merox.cloud`) # change to your domain
+      kind: Rule
+      services:
+        - name: wikijs
+          port: 3000
+    - match: Host(`merox.cloud`) # change to your domain
+      kind: Rule
+      services:
+        - name: wikijs
+          port: 3000
+      middlewares:
+        - name: wikijs-middleware
+  tls:
+    secretName: mer0x39-tls # change to your cert name

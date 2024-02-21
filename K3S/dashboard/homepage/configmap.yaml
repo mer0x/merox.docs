@@ -1,0 +1,190 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: merox-dashboard-homepage
+  namespace: default
+  labels:
+    helm.sh/chart: homepage-1.2.3
+    app.kubernetes.io/name: homepage
+    app.kubernetes.io/instance: merox-dashboard
+    app.kubernetes.io/version: "0.6.10"
+    app.kubernetes.io/managed-by: Helm
+data:
+  bookmarks.yaml: |
+    - Developer:
+      - Github:
+        - abbr: GH
+          href: https://github.com/
+  docker.yaml: ""
+  kubernetes.yaml: |
+    mode: disable
+  services.yaml: |
+    - Hypervisor:
+        - Proxmox:
+            icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/0eaf38572d4b8a2485228eb5da98d356ca47f653/svg/proxmox.svg
+            href: "https://nexus.your-domain:8006"
+            description: nexus
+            widget:
+                type: proxmox
+                url: "https://nexus.your-domain:8006"
+                username: "api@pam!homepage"
+                password: "api_token"
+                node: nexus
+        - Proxmox:
+            icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/0eaf38572d4b8a2485228eb5da98d356ca47f653/svg/proxmox.svg
+            href: "https://citadel.your-domain:8006"
+            description: citadel
+            widget:
+                type: proxmox
+                url: "https://citadel.your-domain:8006"
+                username: "api@pam!homepage"
+                password: "api_token"
+                node: citadel
+        - Proxmox:
+            icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/0eaf38572d4b8a2485228eb5da98d356ca47f653/svg/proxmox.svg
+            href: "https://helix.your-domain:8006"
+            description: helix
+            widget:
+                type: proxmox
+                url: "https://helix.your-domain:800"
+                username: "api@pam!homepage"
+                password: "api_token"
+                node: helix
+    - Containers:
+        - Rancher:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/rancher.svg
+            href: "https://rancher.your-domain"
+            description: k8s
+        - Longhorn:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/longhorn.svg
+            href: "https://rancher.your-domain/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard"
+            description: k8s storage
+        - Portainer:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/portainer.svg
+            href: "https://prod.your-domain:9443/#!/auth"
+            description: docker
+    - DNS:
+        - Unbound:
+            icon: https://www.vectorlogo.zone/logos/nlnetlabsnl_unbound/nlnetlabsnl_unbound-icon.svg
+            href: "https://fw.your-domain:8443/services_unbound.php"
+            description: backup DNS
+        - AD DNS:
+            icon: https://cdn.worldvectorlogo.com/logos/windows-server-2.svg
+            href: "https://l.facebook.com/l.php?u=https%3A%2F%2Fsv1.your-domain%2Fd%2Fs%2FxGL93OpVY3snIMa9OzX8m2rPLjkXoK0x%2Fn5EnFGos2zhCVBuUQEXHRTKBMTXAerZH-YbBgRr8vIgs%3Ffbclid%3DIwAR074slrKYEzhRp_-61aY5ScEV0-RlNBAAx6fss2R-DdYydQmjPk1odzfUw&h=AT0xCdQdNv5UYlrlXTM9CjxRHsplAQaOsig7Cknt8GCTY9SavWwEGn2j4PTtwY5qJCxXJ4z7GxCCL5yRv59C8yLT2uP5X95d398zLfh9VvI9XyaCJyrjft_O1BHWy5eHsZWudw"
+            description: Windows DNS Server
+    - Network:
+        - pFsense:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/pfsense.svg
+            href: "https://fw.your-domain:8443"
+            description: network
+        - OpenVPN:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/openvpn.svg
+            href: "https://fw.your-domain:8443/vpn_openvpn_server.php"
+            description: tunnel.your-domain
+        - Uptime Kuma:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/uptime-kuma.svg
+            href: "http://alto.your-domain:3001/status/meroxlab"
+            description: internal
+        - TP-Link:
+            icon: https://www.svgrepo.com/show/102795/wifi.svg
+            href: https://your.ip.97.143
+            description: wifi
+        - Traefik:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/traefik.svg
+            href: https://traefik.your-domain/
+            description: Ingress Controller/RP
+
+    - Monitoring:
+        - Grafana:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/grafana.svg
+            href: "https://grafanak.your-domain/"
+            description: visualization and analytics software
+        - Netdata:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/netdata.svg
+            href: "https://netdata.your-domain/"
+            description: monitoring and alerting functionality
+        - Alertmanager:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/alertmanager.svg
+            href: "#"
+            description: alerts
+        - Loki:
+            icon: https://cdn.iconscout.com/icon/premium/png-256-thumb/log-file-3844082-3194728.png?f=webp
+            href: "https://grafanak.your-domain/d/o6-BGgnnk/loki-kubernetes-logs?orgId=1"
+            description: log collector
+        - ArgoCD:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/argocd.svg
+            href: "https://agrocd.your-domain"
+            description: Continuous Delivery
+
+    - Media:
+        - Jellyfin:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/jellyfin.svg
+            href: "http://media.your-domain:8096/"
+            description: media server
+        - Sonarr:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/sonarr.svg
+            href: "http://media.your-domain:8989/"
+            description: TVs tracker
+        - Radarr:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/radarr.svg
+            href: "http://media.your-domain:7878/"
+            description: Movies tracker
+        - qBittorrent:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/qbittorrent.svg
+            href: "http://media.your-domain:8091/"
+            description: Torrent
+
+    - Storage:
+        - Synology:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/synology.svg
+            href: "https://storage.your-domain:5001/"
+            description: nfs/smb/backup
+        - Longhorn:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/longhorn.svg
+            href: "https://rancher.your-domain/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard"
+            description: object storage
+    - Home Automation:
+        - Home Assistant:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/home-assistant.svg
+            href: "#"
+            description: home
+        - Philips HUE:
+            icon: https://www.mitre10.com.au/media/amasty/shopby/option_images/slider/philips_hue.svg
+            href: "http://your.ip.57.207/"
+            description: Lights
+        - Broadlink Control:
+            icon: https://nwzimg.wezhan.net/contents/sitefiles3606/18030899/images/5430245.png
+            href: "http://your.ip.97.102"
+            description: RF/IR control
+    - Other:
+        - WikiJS:
+            icon: https://docs.requarks.io/_assets/favicons/apple-touch-icon.png
+            href: https://docs.your-domain
+            description: own storage cloud
+        - Cloud:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/nextcloud.svg
+            href: https://sv1.your-domain
+            description: own storage cloud
+        - GitHub:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/github.svg
+            href: https://github.com/mer0x/meroxlaboratory
+            description: source code
+        - Wordpress:
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/svg/wordpress.svg
+            href: "https://robertmelcher.ro"
+            description: wordpress
+  settings.yaml: ""
+  widgets.yaml: |
+    - resources:
+        backend: resources
+        cpu: true
+        expanded: true
+        memory: true
+        disk: /
+    - search:
+        provider: google
+        target: _blank
+    - datetime:
+         text_size: xl
+         format:
+         timeStyle: short

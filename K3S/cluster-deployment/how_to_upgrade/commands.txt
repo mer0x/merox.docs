@@ -1,0 +1,30 @@
+How to upgrade my K3S cluster
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server \
+    --cluster-init \
+    --tls-san x.x.x.x.88 \
+    --disable traefik \
+    --disable servicelb \
+    --flannel-iface eth0 \
+    --node-ip x.x.x.x.81 \
+    --node-taint "node-role.kubernetes.io/master=true:NoSchedule"
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server \
+    --server https://x.x.x.x.81:6443 \
+    --disable traefik \
+    --disable servicelb \
+    --flannel-iface eth0 \
+    --node-ip x.x.x.x.82 \
+    --node-taint "node-role.kubernetes.io/master=true:NoSchedule"
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server \
+    --server https://x.x.x.x.81:6443 \
+    --disable traefik \
+    --disable servicelb \
+    --flannel-iface eth0 \
+    --node-ip x.x.x.x.83 \
+    --node-taint "node-role.kubernetes.io/master=true:NoSchedule"
+    
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://x.x.x.x.81:6443 K3S_TOKEN=/var/lib/rancher/k3s/server/node-token sh -s - agent \
+    --node-label 'longhorn=true' \
+    --node-label 'worker=true'

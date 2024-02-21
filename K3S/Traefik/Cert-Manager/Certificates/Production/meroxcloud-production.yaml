@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: merox.cloud # change to your domain
+  namespace: traefik 
+spec:
+  secretName: X-tls # change to your secretname
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.merox.cloud" # change to your domain
+  dnsNames:
+  - "*.merox.cloud" # change to your domain
+  - merox.cloud # change to your domain
+  - "*.robertmelcher.ro" # adauga al doilea domeniu
+  - robertmelcher.ro # adauga al doilea domeniu

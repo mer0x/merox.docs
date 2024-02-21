@@ -1,0 +1,25 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.grafanak.merox.cloud`) # change to your domain
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
+    - match: Host(`grafanak.merox.cloud`) # change to your domain
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
+      middlewares:
+        - name: default-headers
+#  tls:
+#    secretName: X-tls # change to your cert name

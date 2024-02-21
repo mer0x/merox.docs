@@ -1,0 +1,30 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: synology
+  namespace: external-websites
+  annotations:
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.sv1.merox.cloud`)
+      kind: Rule
+      services:
+        - name: synology
+          port: 10003
+          scheme: https
+          passHostHeader: true
+    - match: Host(`sv1.merox.cloud`)
+      kind: Rule
+      services:
+        - name: synology
+          port: 10003
+          scheme: https
+          passHostHeader: true
+      middlewares:
+        - name: default-headers
+  tls:
+    secretName: X-tls
