@@ -3,7 +3,7 @@ output: .retype
 url: https://merox.cloud
 branding:
   title: MEROX CLOUD
-  label: v1.1
+  label: v1.1.2
   favicon: /images/favicon.ico
 links:
 - text: Linkedin
