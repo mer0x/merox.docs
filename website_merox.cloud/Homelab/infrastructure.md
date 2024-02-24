@@ -10,21 +10,19 @@
 ![homelab diagram](/images/diagram_homelab.png)
 
 
-## 🌐 Network
+ ##  Network
 
 
-### 🛡️ Router pfSense: XCY X44
+- Description: The pfSense stands as a pivotal security gateway in the homelab setup, providing robust network protection, traffic management, and connectivity options. Tailored for efficient performance and reliability, this device is essential for maintaining a secure and efficient network environment.
 
-- Description: The pfSense XCY x44 stands as a pivotal security gateway in the homelab setup, providing robust network protection, traffic management, and connectivity options. Tailored for efficient performance and reliability, this device is essential for maintaining a secure and efficient network environment.
-{.grid-list}
 
 ###### Technical Specs:
-
+-    *router pfSense: XCY X44*
 -    CPU: Dual-core, supporting 1 package(s) x 2 core(s) configuration
 -    RAM: 8GB, ensuring smooth operation of network services and applications
 -    Storage: 120GB ZFS, offering reliable and resilient data storage capabilities
 -    **Network Interfaces**:
-```bash
+```bash 
 igb0: flags=8963<UP,BROADCAST,RUNNING,PROMISC,SIMPLEX,MULTICAST> metric 0 mtu 1500
         description: WAN
         options=4e120bb<RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,JUMBO_MTU,VLAN_HWCSUM,WOL_MAGIC,VLAN_HWFILTER,RXCSUM_IPV6,TXCSUM_IPV6,NOMAP>
@@ -56,27 +54,15 @@ igb2: flags=8863<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> metric 0 mtu 1500
 ```
 
 
-- [More info *about networking*](https://docs.merox.cloud/en/networking)
-{.links-list}
+[!ref icon="rocket" text="More about networking"](/homelab/networking/)
 
+ ## Storage
 
-## 📦 Storage
+ - The storage framework within this homelab is engineered for robustness, leveraging a mix of hardware and software to ensure data safety, performance, and scalability. Here's a concise overview of the storage configuration:
 
++++ Synology 
 
-
-- The storage framework within this homelab is engineered for robustness, leveraging a mix of hardware and software to ensure data safety, performance, and scalability. Here's a concise overview of the storage configuration:
-
-    **NFS Share on Synology NAS**: Utilizing two HDDs in RAID1, this setup provides reliable, redundant storage, central to the Proxmox hypervisors for VM and essential data storage.
-
-    **Proxmox Node Storage**:
-        NVMe Drives (128GB): Host the Proxmox OS, ensuring quick system operations, with regular backups via Clonezilla for system recovery.
-        SSD Storage (512GB): Employs ZFS replication for high availability and data integrity, supporting critical VMs and containers.
-
-    **Kubernetes Cluster Storage**:
-        Combines the Synology NAS NFS share for persistent storage and Longhorn for dynamic, scalable storage within the Kubernetes environment.
-
-    **Backup Strategy**: Implements HyperBackup to C2 cloud storage for off-site backups, alongside RAID1 and Clonezilla for local redundancy and recovery..
-{.grid-list}
+**NFS Share on Synology NAS**: Utilizing two HDDs in RAID1, this setup provides reliable, redundant storage, central to the Proxmox hypervisors for VM and essential data storage.
 
 ###### Key Features:
 -    Model: Synology DS223
@@ -95,17 +81,34 @@ tmpfs             tmpfs     987M  1.2M  986M   1% /tmp
 /dev/vg1/volume_1 btrfs     1.8T  461G  1.3T  26% /volume1
 ```
 
-## 💻 Physical Servers
++++ Longhorn
+Kubernetes Cluster Storage:
+        Combines the Synology NAS NFS share for persistent storage and Longhorn for dynamic, scalable storage within the Kubernetes environment.
++++  Disks
+
+**Proxmox Node Storage**:
+        NVMe Drives (128GB): Host the Proxmox OS, ensuring quick system operations, with regular backups via Clonezilla for system recovery.
+        SSD Storage (512GB): Employs ZFS replication for high availability and data integrity, supporting critical VMs and containers.
+
++++  Backup
+
+**Backup Strategy**: Implements HyperBackup to C2 cloud storage for off-site backups, alongside RAID1 and Clonezilla for local redundancy and recovery..
++++
 
 
-- Cluster Composition: Three units operating in a Proxmox cluster for high availability and using ZFS replication for scalable storage.
-{.grid-list}
+
+## Servers
+
++++ MiniPC
+- Proxmox servers, when clustered, form a dynamic virtualization platform crucial for homelabs and IT infrastructures. These servers enable seamless management and deployment of virtual machines and containers, offering flexibility, scalability, and high availability for diverse workloads.
 
 ###### Specs per Mini PC:
+-    DELL mini 3050
 -    CPU: Intel Core i5-6500T @ 2.50GHz
 -    RAM: 32GB DDR3
 -    Storage: 128GB SSD + 512GB NVME
 -    OS: Proxmox Hypervisor
+- Cluster Composition: Three units operating in a Proxmox cluster for high availability and using ZFS replication for scalable storage.
 ###### Roles & VMs:
 -    **citadel.merox.cloud**: k3s-master-01, k3s-worker-01
 ```bash
@@ -144,42 +147,51 @@ VMID       Status     Lock         Name
 300        running                 k3s-admin
 303        running                 k3s-master-03
 ```
-- [More info *about virtualization*](https://docs.merox.cloud/en/Virtual-Machines)
-{.links-list}
 
-### 🖥️ Tower : DELL T7910
-
++++ Tower
 - Description: The **DELL T7910** tower serves as the heart of the homelab, running a Windows 11-based Kubernetes test cluster before deployment to the production cluster on the mini PCs. It's the powerhouse for virtualization and development.
-{.grid-list}
 
 ###### *Technical Specs*:
+-  DELL T7910
 -  CPU: 2 x Intel Xeon E5-2667 v3 @ 3.20GHz
 -  RAM: 64GB DDR3
 -  Storage: 4TB SSD (2 x 2TB), 4TB HDD (2 x 2TB)
 -  GPU: Nvidia Quadro K2000
 -  OS: Windows 11
 
-###### *Key Roles*:
-
--  Kubernetes test cluster hub.
--  NFS mount host for **Synology** NAS backups and k3s cluster data.
-<br></br>
-
-## 📊 Monitoring and Logging
++++
+[!ref icon="rocket" text="More about virtualization"](/homelab/virtual-machines/)
 
 
-• Expand the Use of Grafana: You already utilize Grafana; consider integrating it further with Loki for a centralized logging solution. This combination allows for powerful visualization of logs alongside your metrics.
-• Leverage Loki for Comprehensive Logging: Since Loki is in use, ensure it captures logs from all critical systems and services. Set up structured logging where possible to make searching and debugging more efficient.
-• Alerting and Anomaly Detection: Utilize Prometheus' alerting rules to monitor for anomalies or specific events in your system metrics. For logging, configure Loki to alert on critical log patterns that could indicate issues or security concerns.
-• Netdata (**used for K3S cluster**) for Real-Time Performance Monitoring 📉: Utilize Netdata alongside existing tools for granular, real-time system monitoring.
 
-![netdata3.png](/netdata3.png =350x) ![fwinfluxdb2.png](/fwinfluxdb2.png =350x) ![loki1.png](/loki1.png =350x)
 
-## 🔐 Security
+## Monitoring
+
+
+• **Expand the Use of Grafana**: You already utilize Grafana; consider integrating it further with Loki for a centralized logging solution. This combination allows for powerful visualization of logs alongside your metrics.
+
+• **Leverage Loki for Comprehensive Logging**: Since Loki is in use, ensure it captures logs from all critical systems and services. Set up structured logging where possible to make searching and debugging more efficient.
+
+• **Alerting and Anomaly Detection**: Utilize Prometheus' alerting rules to monitor for anomalies or specific events in your system metrics. For logging, configure Loki to alert on critical log patterns that could indicate issues or security concerns.
+
+• **Netdata** ( K3S cluster) for Real-Time Performance Monitoring 📉: Utilize Netdata alongside existing tools for granular, real-time system monitoring.
+
+
+![Netdata - K3S Cluster](/images/content/netdata.png "Netdata - K3S Cluster")
+![Influxdb w/ Grafana](/images/content/grafana.png "Influxdb w/ Grafana") 
+![Logging K3S](/images/content/loki.png "Logging K3S")
+
+[!ref icon="rocket" text="More about monitoring"](/homelab/monitoring)
+
+## Security
 
   • **Firewall and IDS/IPS Enhancements**: With pfSense as your firewall, consider reviewing and updating your ruleset regularly to adapt to new threats. Enhance IDS/IPS capabilities by incorporating additional rule sets or integrating with external threat intelligence feeds for more dynamic protection.
+
    • **Secure Configuration Management**: Use Ansible for automated deployment of security updates and configuration changes. This ensures that all devices are consistently configured according to best security practices.
+   
    • **VPN Security**: Ensure your VPN setup on pfSense uses strong encryption standards and regularly rotate keys to maintain secure remote access.
 
-![snort.png](/snort.png =300x) ![pfb.png](/pfb.png =300x)
+![Snort on pfSense](/images/content/snort.png "Snort on pfSense")
+![pfBlockerNG](/images/content/pfb.png "pfBlockerNG")
 
+[!ref icon="rocket" text="More about CyberSecurity"](/homelab/security)
