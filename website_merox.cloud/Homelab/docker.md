@@ -1,6 +1,6 @@
 #  Docker
 
-# Tabs {.tabset}
+
 ## Docker install
 
 

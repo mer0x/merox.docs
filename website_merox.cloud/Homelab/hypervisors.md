@@ -1,14 +1,14 @@
 # Hypervisors 
 
->Welcome to the heart of our homelab's virtualization infrastructure at Merox Cloud! Here, we're excited to share the details of our powerful Proxmox hypervisors that keep our virtual machines (VMs) and containers (LXCs) running smoothly. Dive into the core of PulsarDC, our Proxmox cluster, and discover the technology that powers our homelab network.
+Welcome to the heart of our homelab's virtualization infrastructure at Merox Cloud! Here, we're excited to share the details of our powerful Proxmox hypervisors that keep our virtual machines (VMs) and containers (LXCs) running smoothly. Dive into the core of PulsarDC, our Proxmox cluster, and discover the technology that powers our homelab network.
 
 
-> Proxmox environment is bolstered by three robust servers, each housed in its own mini-PC, known as Citadel, Helix, and Nexus. These servers are the pillars of the PulsarDC cluster, bringing high availability and flexibility to our virtualized infrastructure.
+ Proxmox environment is bolstered by three robust servers, each housed in its own mini-PC, known as Citadel, Helix, and Nexus. These servers are the pillars of the PulsarDC cluster, bringing high availability and flexibility to our virtualized infrastructure.
 {.is-info}
 ## Cluster Overview 🌟
-![proxmoxenv.png](/proxmoxenv.png)
+![Proxmox cluster](/images/content/proxmoxenv.png "Proxmox cluster")
 
-# Tabs {.tabset}
+
 ## HA
 -    **High Availability Proxmox Servers**: Citadel, Helix, and Nexus form the resilient backbone of our PulsarDC cluster, ensuring our applications and services are always up and running.
 
