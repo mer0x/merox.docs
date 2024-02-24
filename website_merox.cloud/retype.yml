@@ -4,6 +4,7 @@ url: https://merox.cloud
 branding:
   title: MEROX CLOUD
   label: v1.0
+  favicon: /images/favicon.ico
 links:
 - text: Linkedin
   link: https://ro.linkedin.com/in/robert-melcher-92a1a9157
