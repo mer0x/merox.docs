@@ -1,0 +1,21 @@
+input: .
+output: .retype
+url: https://merox.cloud
+branding:
+  title: MEROX CLOUD
+  label: v1.0
+links:
+- text: Linkedin
+  link: https://ro.linkedin.com/in/robert-melcher-92a1a9157
+  icon: link
+- text: Github
+  link: https://github.com/mer0x
+  icon: mark-github
+footer:
+  copyright: "deployed with :heart: on kubernetes &copy; Copyright {{ year }}. All rights reserved."
+serve:
+  host: 0.0.0.0             # Serve the website from this host location
+editor:
+  enabled: true # Default is true
+#  enabled: false # Default is true
+#  port: 5000
