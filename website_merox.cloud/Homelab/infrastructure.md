@@ -1,17 +1,15 @@
 # Infrastructure
 
-> This document outlines the infrastructure framework for a personal IT project, meticulously designed to ensure a blend of efficiency, scalability, and security. It represents the foundational architecture, encompassing network design, data management strategies, computational resources, and security protocols. Aimed at supporting the project's unique requirements, this infrastructure is crafted to facilitate optimal performance, reliability, and adaptability, reflecting a commitment to leveraging advanced technologies and methodologies for achieving project objectives.{.is-info}
+!!!info This document outlines the infrastructure framework for a personal IT project, meticulously designed to ensure a blend of efficiency, scalability, and security. It represents the foundational architecture, encompassing network design, data management strategies, computational resources, and security protocols. Aimed at supporting the project's unique requirements, this infrastructure is crafted to facilitate optimal performance, reliability, and adaptability, reflecting a commitment to leveraging advanced technologies and methodologies for achieving project objectives.
+!!!
 
 
 ## Topology overview:
 
 
-![img_4783.png](/images/diagram_homelab.png)
+![homelab diagram](/images/diagram_homelab.png)
 
 
-
-
-# Tabs {.tabset}
 ## 🌐 Network
 
 
