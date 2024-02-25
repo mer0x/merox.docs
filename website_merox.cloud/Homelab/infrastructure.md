@@ -9,7 +9,49 @@
 ## Topology overview:
 
 
-![homelab diagram](/images/diagram_homelab.png)
+```mermaid
+
+graph TB
+    subgraph Network
+        ONT_Orange(ONT Orange) -->|WAN| pfSense(pfSense)
+        pfSense -->|Wireless| TP_Link_Wifi(TP Link Wifi)
+        pfSense -->|Wired| Switch_TP_Link(Switch TP Link)
+        pfSense --> Philips_Hue_Controller(Philips Hue Controller)
+    end
+    subgraph Infrastructure
+        Switch_TP_Link --> Server_Proxmox_Citadel(Server Proxmox Citadel)
+        Switch_TP_Link --> Server_Proxmox_Helix(Server Proxmox Helix)
+        Switch_TP_Link --> Server_Proxmox_Nexus(Server Proxmox Nexus)
+        Switch_TP_Link --> Server_Dell_T7910(Server Dell T7910)
+        Switch_TP_Link --> NAS_Synology_DS223(NAS Synology DS223)
+    end
+    subgraph Virtualization
+        Server_Proxmox_Citadel --> k3s_master_01(k3s-master-01)
+        Server_Proxmox_Citadel --> k3s_01(k3s-01)
+        Server_Proxmox_Helix --> k3s_master_02(k3s-master-02)
+        Server_Proxmox_Helix --> k3s_02(k3s-02)
+        Server_Proxmox_Helix --> ansible(ansible)
+        Server_Proxmox_Helix --> docker(docker)
+        Server_Proxmox_Nexus --> k3s_master_03(k3s-master-03)
+        Server_Proxmox_Nexus --> k3s_03(k3s-03)
+        Server_Proxmox_Nexus --> Windows_Server(Windows Server)
+    end
+    subgraph Storage
+        NAS_Synology_DS223 -.->|NFS Share| k3s_master_01
+        NAS_Synology_DS223 -.->|NFS Share| k3s_master_02
+        NAS_Synology_DS223 -.->|NFS Share| k3s_master_03
+        NAS_Synology_DS223 -.->|NFS Share| k3s_01
+        NAS_Synology_DS223 -.->|NFS Share| k3s_02
+        NAS_Synology_DS223 -.->|NFS Share| k3s_03
+    end
+    style Network fill:#4a90e2,stroke:#333,stroke-width:2px
+    style Infrastructure fill:#708090,stroke:#333,stroke-width:2px
+    style Virtualization fill:#ff7f50,stroke:#333,stroke-width:2px
+    style Storage fill:#bfb,stroke:#333,stroke-width:2px
+
+```
+
+
 
 
  ##  Network
