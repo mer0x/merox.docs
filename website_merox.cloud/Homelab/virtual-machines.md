@@ -1,5 +1,6 @@
 # Virtual Machines
 
+Virtual machines (VMs) simulate physical computers, enabling the running of different operating systems and applications on a single hardware host. In a Proxmox cluster, VMs host Kubernetes to orchestrate containerized applications, providing efficient resource use and scalability. This configuration supports workload isolation and simplifies application deployment and management.
 
 ## Virtual Machines Features
 
