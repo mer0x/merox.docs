@@ -98,7 +98,7 @@ igb2: flags=8863<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> metric 0 mtu 1500
 ```
 
 
-[!ref icon="rocket" text="More about networking"](/homelab/networking/)
+
 
  ## Storage
 
@@ -204,7 +204,7 @@ VMID       Status     Lock         Name
 -  OS: Windows 11
 
 +++
-[!ref icon="rocket" text="More about virtualization"](/homelab/virtual-machines/)
+
 
 
 
@@ -225,7 +225,6 @@ VMID       Status     Lock         Name
 ![Influxdb w/ Grafana](/images/content/grafana.png "Influxdb w/ Grafana") 
 ![Logging K3S](/images/content/loki.png "Logging K3S")
 
-[!ref icon="rocket" text="More about monitoring"](/homelab/monitoring)
 
 ## Security
 
@@ -238,4 +237,3 @@ VMID       Status     Lock         Name
 ![Snort on pfSense](/images/content/snort.png "Snort on pfSense")
 ![pfBlockerNG](/images/content/pfb.png "pfBlockerNG")
 
-[!ref icon="rocket" text="More about CyberSecurity"](/homelab/security)

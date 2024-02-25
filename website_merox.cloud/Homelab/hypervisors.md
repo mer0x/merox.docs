@@ -41,10 +41,12 @@ Welcome to the heart of our homelab's virtualization infrastructure at Merox Clo
 
 ## VM & LXC configs
 
+[!ref icon="rocket" text="Also check"](/resources/virtualization/)
+
 +++ Citadel
 ### VMs 💻
 
-#### **K3S-01**
+###### K3S-01
 
 ```bash
 root@citadel:/home/merox# cat /etc/pve/nodes/citadel/qemu-server/304.conf
